@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,700;1,100;1,300;1,400;1,700&display=swap");
+
 .App {
-  background-color: aqua;
+  font-family: "Poppins", sans-serif;
 }
 
 .header {
@@ -34,4 +36,8 @@
 
 .gap-10px {
   gap: 10px;
+}
+
+.gap-15px {
+  gap: 15px;
 }
