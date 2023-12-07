@@ -1,3 +1,8 @@
+.header {
+  background-color: #2874f0;
+  color: white;
+}
+
 .header h2 {
   margin: 0;
 }
@@ -11,7 +16,7 @@
   width: 0px;
   height: 1px;
   display: block;
-  background: black;
+  background: white;
   transition: 300ms;
 }
 
