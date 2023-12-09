@@ -6,6 +6,7 @@ body {
 
 .App {
   font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
 
 .header {
@@ -28,6 +29,18 @@ hr {
   cursor: pointer;
 }
 
+.button-style {
+  background-color: #fb641b;
+  padding: 10px 15px;
+  border: none;
+  color: white;
+  font-weight: 700;
+}
+
+.button-style:hover {
+  background-color: #be521b;
+}
+
 /* Flex styles */
 
 .flex-row {
@@ -36,12 +49,21 @@ hr {
   align-items: center;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .space-between {
   justify-content: space-between;
 }
 
 .space-around {
   justify-content: space-around;
+}
+
+.align-start {
+  align-items: flex-start;
 }
 
 .gap-10px {

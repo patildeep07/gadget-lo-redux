@@ -2,11 +2,11 @@ import React from "react";
 import "./App.css";
 import { Header } from "./components/Header/Header";
 import { Routes, Route } from "react-router-dom";
-import { Login } from "./pages/Login";
-import { Home } from "./pages/Home";
-import { Cart } from "./pages/Cart";
-import { Wishlist } from "./pages/Wishlist";
-import { Store } from "./pages/Store";
+import { Login } from "./pages/Login/Login";
+import { Home } from "./pages/Home/Home";
+import { Cart } from "./pages/Cart/Cart";
+import { Wishlist } from "./pages/Wishlist/Wishlist";
+import { Store } from "./pages/Store/Store";
 
 function App() {
   return (
