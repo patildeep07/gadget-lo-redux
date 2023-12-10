@@ -7,6 +7,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signup } from "../../features/Users/UserSlice";
 
+// Toast
+import { toast } from "react-toastify";
+
 export const Login = () => {
   // Dispatch
 
@@ -47,7 +50,6 @@ export const Login = () => {
       mobileNumber > 0
     ) {
       if (password === confirmPassword) {
-        console.log({ signUpForm });
         dispatch(signup(signUpForm));
 
         setSignUpForm({
@@ -60,10 +62,10 @@ export const Login = () => {
           mobileNumber: 0,
         });
       } else {
-        alert("Passwords dont match");
+        toast.error("Passwords dont match");
       }
     } else {
-      alert("Enter all details");
+      toast.error("Fill all details");
     }
   };
 

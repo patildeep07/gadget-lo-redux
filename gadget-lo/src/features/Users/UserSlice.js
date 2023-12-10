@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// Toast
+import { toast } from "react-toastify";
+
 const initialState = {
   allUsers: {},
   currentUser: {},
@@ -17,9 +20,10 @@ export const signup = createAsyncThunk("users/signup", async (userDetails) => {
       userDetails
     );
 
+    toast.success("Successfully created a new user. Proceed to login");
     console.log(response);
   } catch (error) {
-    console.log(error);
+    toast.error("Failed to create user");
   }
 });
 
