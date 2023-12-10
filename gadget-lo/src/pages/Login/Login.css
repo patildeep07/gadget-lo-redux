@@ -35,6 +35,10 @@
   border-style: solid;
 }
 
+.name-div {
+  width: 90%;
+}
+
 .info-container button {
   min-width: 150px;
 }

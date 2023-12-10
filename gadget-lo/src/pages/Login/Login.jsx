@@ -4,8 +4,14 @@ import LoginAnimation from "../../assets/Lottie_Animations/loginAnimation.json";
 import Lottie from "lottie-react";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signup } from "../../features/Users/UserSlice";
 
 export const Login = () => {
+  // Dispatch
+
+  const dispatch = useDispatch();
+
   // Which form should be shown?
   const [searchParams, setSearchParams] = useSearchParams({ signup: false });
   const showSignup = searchParams.get("signup") === "true";
@@ -14,23 +20,45 @@ export const Login = () => {
   const [signUpForm, setSignUpForm] = useState({
     email: "",
     userName: "",
+    firstName: "",
+    lastName: "",
     password: "",
     confirmPassword: "",
     mobileNumber: 0,
   });
 
   const signupButtonHandler = () => {
-    const { email, userName, password, confirmPassword, mobileNumber } =
-      signUpForm;
+    const {
+      email,
+      userName,
+      firstName,
+      lastName,
+      password,
+      confirmPassword,
+      mobileNumber,
+    } = signUpForm;
     if (
       email.trim() &&
       userName.trim() &&
       password.trim() &&
       confirmPassword.trim() &&
+      lastName.trim() &&
+      firstName.trim() &&
       mobileNumber > 0
     ) {
       if (password === confirmPassword) {
         console.log({ signUpForm });
+        dispatch(signup(signUpForm));
+
+        setSignUpForm({
+          email: "",
+          userName: "",
+          firstName: "",
+          lastName: "",
+          password: "",
+          confirmPassword: "",
+          mobileNumber: 0,
+        });
       } else {
         alert("Passwords dont match");
       }
@@ -93,6 +121,28 @@ export const Login = () => {
               {/* Data */}
               <div className="flex-column align-start gap-10px">
                 <h2>Sign up</h2>
+
+                <div className="flex-row gap-10px name-div">
+                  <input
+                    placeholder="First Name"
+                    onChange={(e) =>
+                      setSignUpForm({
+                        ...signUpForm,
+                        firstName: e.target.value,
+                      })
+                    }
+                  />
+
+                  <input
+                    placeholder="Last Name"
+                    onChange={(e) =>
+                      setSignUpForm({
+                        ...signUpForm,
+                        lastName: e.target.value,
+                      })
+                    }
+                  />
+                </div>
 
                 <input
                   placeholder="Email id"
