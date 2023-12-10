@@ -2,17 +2,17 @@ import "./Login.css";
 
 import LoginAnimation from "../../assets/Lottie_Animations/loginAnimation.json";
 import Lottie from "lottie-react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signup } from "../../features/Users/UserSlice";
+import { login, signup } from "../../features/Users/UserSlice";
 
 // Toast
 import { toast } from "react-toastify";
 
 export const Login = () => {
   // Dispatch
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // Which form should be shown?
@@ -61,11 +61,40 @@ export const Login = () => {
           confirmPassword: "",
           mobileNumber: 0,
         });
+
+        setSearchParams((prev) => {
+          prev.set("signup", false);
+          return prev;
+        });
       } else {
         toast.error("Passwords dont match");
       }
     } else {
       toast.error("Fill all details");
+    }
+  };
+
+  // Login
+  // Storing login data
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const loginButtonHandler = () => {
+    const { email, password } = loginForm;
+
+    if (email.trim() && password.trim()) {
+      dispatch(login(loginForm));
+
+      setLoginForm({
+        email: "",
+        password: "",
+      });
+
+      navigate("/");
+    } else {
+      toast.error("Fill your login details");
     }
   };
 
@@ -95,11 +124,33 @@ export const Login = () => {
               <div className="flex-column align-start gap-10px">
                 <h2>Log in</h2>
 
-                <input placeholder="Enter registered mail id" />
+                <input
+                  onChange={(e) =>
+                    setLoginForm({
+                      ...loginForm,
+                      email: e.target.value,
+                    })
+                  }
+                  placeholder="Enter registered mail id"
+                />
 
-                <input placeholder="Password" />
+                <input
+                  type="password"
+                  onChange={(e) =>
+                    setLoginForm({
+                      ...loginForm,
+                      password: e.target.value,
+                    })
+                  }
+                  placeholder="Password"
+                />
 
-                <button className="button-style cursor">Login</button>
+                <button
+                  onClick={loginButtonHandler}
+                  className="button-style cursor"
+                >
+                  Login
+                </button>
               </div>
 
               {/* Register */}
