@@ -4,6 +4,10 @@ body {
   background-color: #f1f3f6;
 }
 
+* {
+  margin: 0;
+}
+
 .App {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;

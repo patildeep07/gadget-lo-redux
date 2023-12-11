@@ -22,6 +22,7 @@ export const signup = createAsyncThunk("users/signup", async (userDetails) => {
     );
 
     toast.success("Successfully created a new user. Proceed to login");
+    return response;
   } catch (error) {
     toast.error("Failed to create user");
   }

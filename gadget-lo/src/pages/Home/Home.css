@@ -1,0 +1,35 @@
+.landing-section {
+  height: 95vh;
+
+  background-image: url(../../assets/Images/landing-hero-image.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 0, 0, 0),
+    rgba(0, 0, 0, 0.755)
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-text {
+  text-transform: uppercase;
+
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: aliceblue;
+  font-size: 20px;
+  letter-spacing: 2px;
+
+  padding: 10px 15px;
+}
