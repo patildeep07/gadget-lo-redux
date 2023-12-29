@@ -1,0 +1,29 @@
+.product-card {
+  height: 60vh;
+  width: 250px;
+  /* border: 1px solid lightgray; */
+
+  cursor: pointer;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: 0.5s;
+}
+
+.product-card-image {
+  height: 65%;
+  width: 80%;
+
+  object-fit: contain;
+
+  padding: 10px 10px;
+
+  align-self: center;
+}
+
+.card-content-container {
+  height: 35%;
+
+  margin: 5px 15px;
+}

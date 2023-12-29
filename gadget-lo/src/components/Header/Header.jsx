@@ -15,7 +15,7 @@ export const Header = () => {
 
       {/* Logo */}
       <h2 className="cursor" onClick={() => navigate("/")}>
-        LOGO
+        Gadget Lo
       </h2>
 
       {/* Menu bar */}
