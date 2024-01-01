@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import "./Home.css";
 
 export const Home = () => {
-  const userSlice = useSelector((state) => state.users);
-  console.log({ userSlice });
+  // const userSlice = useSelector((state) => state.users); /// Will need this for categories
+
   return (
     <div>
       <div className="web-view landing-section">

@@ -1,13 +1,12 @@
 import "./Store.css";
 
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getAllProducts } from "../../features/Products/ProductSlice";
 import { ProductListing } from "../../components/Product-listing/ProductListing";
 
 export const Store = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products.allProducts);
@@ -122,7 +121,7 @@ export const Store = () => {
       <div className="flex-row gap-15px align-start">
         {/* Filters */}
         <div className="filter-column">
-          <h3>Filters</h3>
+          <h3 className="margin-10px-0px">Filters</h3>
           <hr />
 
           {/* Price */}
@@ -130,15 +129,19 @@ export const Store = () => {
             <div className="flex-row space-between">
               <h3>Price</h3>
               <button
+                className="clear-btn"
                 onClick={() =>
-                  setParameters((prev) => {
-                    prev.set("sortByPriceHighToLow", false);
-                    prev.set("sortByPriceLowToHigh", false);
-                    return prev;
-                  })
+                  setParameters(
+                    (prev) => {
+                      prev.set("sortByPriceHighToLow", false);
+                      prev.set("sortByPriceLowToHigh", false);
+                      return prev;
+                    },
+                    { replace: true }
+                  )
                 }
               >
-                Clear
+                Reset
               </button>
             </div>
 
@@ -149,11 +152,14 @@ export const Store = () => {
                 checked={sortByPriceHighToLow === "true" ? true : false}
                 name="sortByPrice"
                 onChange={() =>
-                  setParameters((prev) => {
-                    prev.set("sortByPriceHighToLow", true);
-                    prev.set("sortByPriceLowToHigh", false);
-                    return prev;
-                  })
+                  setParameters(
+                    (prev) => {
+                      prev.set("sortByPriceHighToLow", true);
+                      prev.set("sortByPriceLowToHigh", false);
+                      return prev;
+                    },
+                    { replace: true }
+                  )
                 }
               />
               <label htmlFor="highToLow">High to Low</label>
@@ -166,11 +172,14 @@ export const Store = () => {
                 checked={sortByPriceLowToHigh === "true" ? true : false}
                 name="sortByPrice"
                 onChange={() =>
-                  setParameters((prev) => {
-                    prev.set("sortByPriceLowToHigh", true);
-                    prev.set("sortByPriceHighToLow", false);
-                    return prev;
-                  })
+                  setParameters(
+                    (prev) => {
+                      prev.set("sortByPriceLowToHigh", true);
+                      prev.set("sortByPriceHighToLow", false);
+                      return prev;
+                    },
+                    { replace: true }
+                  )
                 }
               />
               <label htmlFor="lowToHigh">Low to High</label>
@@ -182,14 +191,18 @@ export const Store = () => {
             <div className="flex-row space-between">
               <h3>Price Range</h3>
               <button
+                className="clear-btn"
                 onClick={(e) =>
-                  setParameters((prev) => {
-                    prev.set("priceRange", 200000);
-                    return prev;
-                  })
+                  setParameters(
+                    (prev) => {
+                      prev.set("priceRange", 200000);
+                      return prev;
+                    },
+                    { replace: true }
+                  )
                 }
               >
-                Clear
+                Reset
               </button>
             </div>
 
@@ -227,14 +240,18 @@ export const Store = () => {
             <div className="flex-row space-between">
               <h3>Categories</h3>
               <button
+                className="clear-btn"
                 onClick={(e) =>
-                  setParameters((prev) => {
-                    prev.set("selectedCategory", "All");
-                    return prev;
-                  })
+                  setParameters(
+                    (prev) => {
+                      prev.set("selectedCategory", "All");
+                      return prev;
+                    },
+                    { replace: true }
+                  )
                 }
               >
-                Clear
+                Reset
               </button>
             </div>
 
@@ -264,14 +281,18 @@ export const Store = () => {
             <div className="flex-row space-between">
               <h3>Ratings</h3>
               <button
+                className="clear-btn"
                 onClick={(e) =>
-                  setParameters((prev) => {
-                    prev.set("selectedRating", 1);
-                    return prev;
-                  })
+                  setParameters(
+                    (prev) => {
+                      prev.set("selectedRating", 1);
+                      return prev;
+                    },
+                    { replace: true }
+                  )
                 }
               >
-                Clear
+                Reset
               </button>
             </div>
 
@@ -301,10 +322,13 @@ export const Store = () => {
 
         {/* Products */}
         <div className="store-column">
-          <h3>Products</h3>
-          <p>Filter</p>
-
-          <hr />
+          <h3 className="margin-10px-0px">
+            Products{" "}
+            <span className="font-light">
+              (Showing {displayProducts.length} of {filterByRating.length})
+            </span>
+          </h3>
+          <hr className="margin-10px-0px" />
 
           {status === "loading" && (
             <div className="loading-container">

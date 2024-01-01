@@ -4,7 +4,7 @@ import LoginAnimation from "../../assets/Lottie_Animations/loginAnimation.json";
 import Lottie from "lottie-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, signup } from "../../features/Users/UserSlice";
 
 // Toast
@@ -14,6 +14,11 @@ export const Login = () => {
   // Dispatch
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // user information
+  const users = useSelector((state) => state.users);
+
+  const { isLoggedIn } = users;
 
   // Which form should be shown?
   const [searchParams, setSearchParams] = useSearchParams({ signup: false });
@@ -92,7 +97,9 @@ export const Login = () => {
         password: "",
       });
 
-      navigate("/");
+      if (isLoggedIn) {
+        navigate("/");
+      }
     } else {
       toast.error("Fill your login details");
     }

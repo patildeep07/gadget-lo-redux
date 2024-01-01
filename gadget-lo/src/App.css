@@ -25,6 +25,25 @@ hr {
 
 /* General styling */
 
+.clear-btn {
+  border: none;
+  padding: 5px 10px;
+  background-color: #2874f0;
+  color: #e4e4ed;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.clear-btn:hover {
+  background-color: #1252ba;
+}
+
+.font-light {
+  font-weight: 400;
+  font-size: small;
+}
+
 .margin-10px-0px {
   margin: 10px 0;
 }

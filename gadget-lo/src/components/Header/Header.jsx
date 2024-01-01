@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const users = useSelector((state) => state.users);
+  const { isLoggedIn } = users;
+
+  // UI
   return (
     <div className="header flex-row space-around padding-10px-15px">
       {/* Categories */}
@@ -30,9 +35,18 @@ export const Header = () => {
         <p className="cursor link-style" onClick={() => navigate("/wishlist")}>
           Wishlist
         </p>
-        <p className="cursor link-style" onClick={() => navigate("/login")}>
-          Login
-        </p>
+
+        {!isLoggedIn && (
+          <p className="cursor link-style" onClick={() => navigate("/login")}>
+            Login
+          </p>
+        )}
+
+        {isLoggedIn && (
+          <p className="cursor link-style" onClick={() => navigate("/account")}>
+            Account
+          </p>
+        )}
       </div>
 
       {/* End */}

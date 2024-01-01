@@ -1,18 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 
 export const ProductCard = ({ product }) => {
-  const {
-    _id,
-    productName,
-    brandName,
-    productImage,
-    price,
-    discountPrice,
-    averageRating,
-    createdAt,
-  } = product;
+  const navigate = useNavigate();
+  const { _id, productName, brandName, productImage, price, discountPrice } =
+    product;
   return (
-    <div className="product-card flex-column">
+    <div
+      className="product-card flex-column"
+      onClick={() => navigate(`/product/${_id}`)}
+    >
       <img
         alt={productName}
         src={productImage}
