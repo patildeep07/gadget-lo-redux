@@ -45,6 +45,42 @@ export const login = createAsyncThunk(
   }
 );
 
+// 3. Add to wishlist
+
+export const addToWishlist = createAsyncThunk(
+  "users/addToWishlist",
+  async ({ userId, productId }) => {
+    try {
+      const response = await axios.post(
+        `https://backend-gadget-lo.patildeep07.repl.co/users/${userId}/add-to-wishlist/${productId}`
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// 4. Add to cart
+
+export const addToCart = createAsyncThunk(
+  "users/addToCart",
+  async ({ userId, productId }) => {
+    console.log({ userId, productId });
+    try {
+      const response = await axios.post(
+        `https://backend-gadget-lo.patildeep07.repl.co/users/${userId}/add-to-cart/${productId}`
+      );
+
+      console.log({ response });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 // Creating slice of users
 
 export const UserSlice = createSlice({
@@ -73,6 +109,46 @@ export const UserSlice = createSlice({
 
     // Rejected case
     builder.addCase(login.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+
+    // #############
+
+    // 2. Add to wishlist
+    // Pending case
+    builder.addCase(addToWishlist.pending, (state, action) => {
+      state.status = "loading";
+    });
+
+    // Fulfilled case
+    builder.addCase(addToWishlist.fulfilled, (state, action) => {
+      state.currentUser.wishlist = action.payload.user.wishlist;
+      toast.success(action.payload.message);
+    });
+
+    // Rejected case
+    builder.addCase(addToWishlist.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+
+    // #############
+
+    // 3. Add to cart
+    // Pending case
+    builder.addCase(addToCart.pending, (state, action) => {
+      state.status = "loading";
+    });
+
+    // Fulfilled case
+    builder.addCase(addToCart.fulfilled, (state, action) => {
+      state.currentUser.cart = action.payload.user.cart;
+      toast.success(action.payload.message);
+    });
+
+    // Rejected case
+    builder.addCase(addToCart.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });

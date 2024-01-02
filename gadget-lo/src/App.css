@@ -113,6 +113,10 @@ hr {
   flex-wrap: wrap;
 }
 
+.dotted-line {
+  border-top: 1px dotted #000;
+}
+
 /* Loader */
 
 .custom-loader {

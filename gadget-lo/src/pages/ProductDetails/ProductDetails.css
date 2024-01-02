@@ -1,0 +1,176 @@
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin: 20px 0;
+  width: 80%;
+  background-color: white;
+  padding: 10px 15px;
+}
+
+.image-button-section {
+  width: calc(40% - 5px);
+}
+
+.content-section {
+  width: calc(60% - 5px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.border-1px-lightgray {
+  border: 1px solid lightgray;
+}
+
+.padding-10px {
+  padding: 10px;
+}
+
+.flex-gap-10px {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flex-gap-20px {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-image {
+  max-height: 450px;
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-section span {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 300;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.review-container {
+  margin: 10px 0;
+  border-top: 1px solid lightgray;
+  border-left: 0px;
+  border-right: 0px;
+  padding: 10px 0;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.add-to-cart-button,
+.add-to-wishlist-button {
+  width: calc(50% - 5px);
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 15px;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.ff9f00 {
+  background-color: #ff9f00;
+}
+
+.ff9f00:hover {
+  background-color: #c17904;
+}
+
+.fb641b {
+  background-color: #fb641b;
+}
+
+.fb641b:hover {
+  background-color: #c74d10;
+}
+
+.disabled {
+  background-color: antiquewhite;
+}
+
+.disabled:hover {
+  background-color: antiquewhite;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.breadcrumb {
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.product-title {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.product-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.rating-container {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.green {
+  background-color: rgb(4, 179, 4);
+}
+
+.red {
+  background-color: red;
+}
+
+.font-green {
+  color: rgb(4, 179, 4);
+}
+
+.bold {
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 600px) {
+  .product-container {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .image-section {
+    width: 100%;
+  }
+
+  .content-section {
+    width: 100%;
+  }
+}

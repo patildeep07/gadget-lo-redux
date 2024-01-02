@@ -96,10 +96,6 @@ export const Login = () => {
         email: "",
         password: "",
       });
-
-      if (isLoggedIn) {
-        navigate("/");
-      }
     } else {
       toast.error("Fill your login details");
     }
