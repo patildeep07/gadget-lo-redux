@@ -19,7 +19,7 @@ export const getAllProducts = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        "https://backend-gadget-lo.patildeep07.repl.co/products/"
+        "https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/products/"
       );
 
       return response.data;

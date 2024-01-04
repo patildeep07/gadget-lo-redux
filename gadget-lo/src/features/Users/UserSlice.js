@@ -17,7 +17,7 @@ const initialState = {
 export const signup = createAsyncThunk("users/signup", async (userDetails) => {
   try {
     const response = await axios.post(
-      "https://backend-gadget-lo.patildeep07.repl.co/users/",
+      "https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/",
       userDetails
     );
 
@@ -34,7 +34,7 @@ export const login = createAsyncThunk(
   async (userCredentials) => {
     try {
       const response = await axios.post(
-        "https://backend-gadget-lo.patildeep07.repl.co/users/login",
+        "https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/login",
         userCredentials
       );
 
@@ -52,7 +52,7 @@ export const addToWishlist = createAsyncThunk(
   async ({ userId, productId }) => {
     try {
       const response = await axios.post(
-        `https://backend-gadget-lo.patildeep07.repl.co/users/${userId}/add-to-wishlist/${productId}`
+        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/add-to-wishlist/${productId}`
       );
 
       return response.data;
@@ -69,10 +69,9 @@ export const addToCart = createAsyncThunk(
   async ({ userId, productId }) => {
     try {
       const response = await axios.post(
-        `https://backend-gadget-lo.patildeep07.repl.co/users/${userId}/add-to-cart/${productId}`
+        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/add-to-cart/${productId}`
       );
 
-      console.log({ response });
       return response.data;
     } catch (error) {
       console.log(error);
@@ -88,11 +87,43 @@ export const updateUser = createAsyncThunk(
     console.log({ userId, updatedDetails });
     try {
       const response = await axios.post(
-        `https://backend-gadget-lo.patildeep07.repl.co/users/${userId}/update-user`,
+        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/update-user`,
         updatedDetails
       );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
-      console.log({ response });
+// 6. Remove from wishlist
+
+export const removeFromWishlist = createAsyncThunk(
+  "users/removeFromWishlist",
+  async ({ userId, productId }) => {
+    try {
+      const response = await axios.delete(
+        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/remove-from-wishlist/${productId}`
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// 7. Remove from cart
+
+export const removeFromCart = createAsyncThunk(
+  "users/removeFromCart",
+  async ({ userId, productId }) => {
+    try {
+      const response = await axios.delete(
+        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/remove-from-cart/${productId}`
+      );
+
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -167,6 +198,46 @@ export const UserSlice = createSlice({
 
     // Rejected case
     builder.addCase(addToCart.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+
+    // #############
+
+    // 4. Remove from wishlist
+    // Pending case
+    builder.addCase(removeFromWishlist.pending, (state, action) => {
+      state.status = "loading";
+    });
+
+    // Fulfilled case
+    builder.addCase(removeFromWishlist.fulfilled, (state, action) => {
+      state.currentUser.wishlist = action.payload.user.wishlist;
+      toast.success(action.payload.message);
+    });
+
+    // Rejected case
+    builder.addCase(removeFromWishlist.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+
+    // #############
+
+    // 4. Remove from cart
+    // Pending case
+    builder.addCase(removeFromCart.pending, (state, action) => {
+      state.status = "loading";
+    });
+
+    // Fulfilled case
+    builder.addCase(removeFromCart.fulfilled, (state, action) => {
+      state.currentUser.cart = action.payload.user.cart;
+      toast.success(action.payload.message);
+    });
+
+    // Rejected case
+    builder.addCase(removeFromCart.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });

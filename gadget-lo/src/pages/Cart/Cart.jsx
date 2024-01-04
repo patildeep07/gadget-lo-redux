@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Cart.css";
+import { removeFromCart } from "../../features/Users/UserSlice";
 
 export const Cart = () => {
   const user = useSelector((state) => state.users.currentUser);
-  const { cart } = user;
-  console.log({ cart });
+  const dispatch = useDispatch();
+  const { _id: userId, cart } = user;
 
   const totalPrice = cart.reduce(
     (acc, curr) => acc + curr.product.price * curr.quantity,
@@ -39,6 +40,7 @@ export const Cart = () => {
                 {cart.map((item) => {
                   const { _id, product } = item;
                   const {
+                    _id: productId,
                     productName,
                     productImage,
                     brandName,
@@ -46,9 +48,9 @@ export const Cart = () => {
                     price,
                   } = product;
                   return (
-                    <div>
-                      <div key={_id} className="cart-product-container ">
-                        <div>
+                    <div key={_id}>
+                      <div className="cart-product-container ">
+                        <div className="cart-image-container">
                           <img
                             alt={productName}
                             src={productImage}
@@ -82,7 +84,14 @@ export const Cart = () => {
                             <p>Rs. {price}</p>
                           )}
 
-                          <p>Remove from cart</p>
+                          <p
+                            className="cursor dotted-underline"
+                            onClick={() => {
+                              dispatch(removeFromCart({ userId, productId }));
+                            }}
+                          >
+                            Remove from cart
+                          </p>
 
                           {/* End */}
                         </div>

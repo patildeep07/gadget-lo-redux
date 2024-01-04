@@ -29,8 +29,18 @@
   width: calc(30% - 10px);
 }
 
+.cart-image-container {
+  height: 150px;
+  width: 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .cart-image {
-  max-height: 150px;
+  height: 100px;
 }
 
 .cart-product-container {
