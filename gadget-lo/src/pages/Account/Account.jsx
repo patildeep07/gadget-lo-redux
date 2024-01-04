@@ -8,15 +8,8 @@ export const Account = () => {
   const user = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
   console.log({ user });
-  const {
-    firstName,
-    lastName,
-    userName,
-    mobileNumber,
-    password,
-    address,
-    _id,
-  } = user;
+  const { firstName, lastName, userName, mobileNumber, password, address } =
+    user;
 
   // useState for storing and updating user details
   const [userDetails, setUserDetails] = useState({

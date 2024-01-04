@@ -77,3 +77,15 @@
   font-weight: 400;
   word-wrap: break-word;
 }
+
+.cart-address-container {
+  border: 1px solid lightgray;
+  padding: 10px 15px;
+
+  margin: 10px 0;
+}
+
+.address-label {
+  display: flex;
+  flex-direction: column;
+}

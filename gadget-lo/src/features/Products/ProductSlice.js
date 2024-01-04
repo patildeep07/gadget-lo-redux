@@ -53,6 +53,7 @@ export const ProductSlice = createSlice({
     builder.addCase(getAllProducts.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
+      toast.error("Failed to retrieve products");
     });
 
     // End extra reducers

@@ -84,12 +84,13 @@ export const addToCart = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   "users/updateUser",
   async ({ userId, updatedDetails }) => {
-    console.log({ userId, updatedDetails });
     try {
       const response = await axios.post(
         `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/update-user`,
         updatedDetails
       );
+
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -121,6 +122,23 @@ export const removeFromCart = createAsyncThunk(
     try {
       const response = await axios.delete(
         `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/remove-from-cart/${productId}`
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// 8. Place order
+
+export const placeOrder = createAsyncThunk(
+  "users/placeOrder",
+  async ({ userId }) => {
+    try {
+      const response = await axios.post(
+        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/place-order`
       );
 
       return response.data;
@@ -238,6 +256,26 @@ export const UserSlice = createSlice({
 
     // Rejected case
     builder.addCase(removeFromCart.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+
+    // ##################
+
+    // 5. Place order
+    // Pending case
+    builder.addCase(placeOrder.pending, (state, action) => {
+      state.status = "loading";
+    });
+
+    // Fulfilled case
+    builder.addCase(placeOrder.fulfilled, (state, action) => {
+      state.currentUser.cart = [];
+      toast.success(action.payload.message);
+    });
+
+    // Rejected case
+    builder.addCase(placeOrder.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });

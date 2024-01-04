@@ -1,11 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Cart.css";
-import { removeFromCart } from "../../features/Users/UserSlice";
+import { placeOrder, removeFromCart } from "../../features/Users/UserSlice";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const user = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
-  const { _id: userId, cart } = user;
+  const navigate = useNavigate();
+
+  const { _id: userId, cart, address } = user;
+
+  const [selectedAddress, setSelectedAddress] = useState({});
 
   const totalPrice = cart.reduce(
     (acc, curr) => acc + curr.product.price * curr.quantity,
@@ -108,7 +114,7 @@ export const Cart = () => {
 
         {/* Cart summary */}
         <div className="cart-summary">
-          <p>PRICE DETAILS</p>
+          <p className="font-weight-500">PRICE DETAILS</p>
 
           <div className="dotted-line"></div>
 
@@ -135,8 +141,63 @@ export const Cart = () => {
             You'll save Rs. {totalSavings} on this order
           </p>
 
+          <div className="dotted-line"></div>
+
+          <p className="font-weight-500">
+            Select an address to deliver your order:*
+          </p>
+
+          {address.length === 0 && (
+            <p>Please go to your profile, and add a new address</p>
+          )}
+
+          {address.length > 0 && (
+            <div>
+              {address.map((item, idx) => {
+                const { addressType, addressInfo } = item;
+                return (
+                  <div
+                    key={idx}
+                    className="flex-row gap-10px cart-address-container"
+                  >
+                    <input
+                      id={addressType}
+                      name="address-radio"
+                      type="radio"
+                      value={item}
+                      onChange={(e) => {
+                        setSelectedAddress(e.target.value);
+                      }}
+                    />
+                    <div className="address-label">
+                      <label htmlFor={addressType} className="font-weight-500">
+                        {addressType}
+                      </label>
+                      <label htmlFor={addressType}>{addressInfo}</label>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          <div className="dotted-line"></div>
+
           {/* Button */}
-          <button className="add-to-cart-button fb641b width-100">
+          <button
+            className={`add-to-cart-button fb641b width-100 ${
+              Object.keys(selectedAddress).length === 0 ? "disabled" : "enable"
+            } ${cart.length === 0 ? "disabled" : "enable"}`}
+            disabled={
+              Object.keys(selectedAddress).length === 0
+                ? true
+                : false || cart.length === 0
+            }
+            onClick={() => {
+              dispatch(placeOrder({ userId }));
+              navigate("/");
+            }}
+          >
             Place order
           </button>
         </div>

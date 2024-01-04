@@ -9,8 +9,6 @@ export const Wishlist = () => {
 
   const dispatch = useDispatch();
 
-  console.log({ cart, wishlist });
-
   const isInCart = (productId) => {
     const result = cart.some(({ product }) => product._id === productId);
     return result;
