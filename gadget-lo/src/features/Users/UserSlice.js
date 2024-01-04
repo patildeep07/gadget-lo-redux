@@ -67,7 +67,6 @@ export const addToWishlist = createAsyncThunk(
 export const addToCart = createAsyncThunk(
   "users/addToCart",
   async ({ userId, productId }) => {
-    console.log({ userId, productId });
     try {
       const response = await axios.post(
         `https://backend-gadget-lo.patildeep07.repl.co/users/${userId}/add-to-cart/${productId}`
@@ -75,6 +74,25 @@ export const addToCart = createAsyncThunk(
 
       console.log({ response });
       return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// 5. Update User details
+
+export const updateUser = createAsyncThunk(
+  "users/updateUser",
+  async ({ userId, updatedDetails }) => {
+    console.log({ userId, updatedDetails });
+    try {
+      const response = await axios.post(
+        `https://backend-gadget-lo.patildeep07.repl.co/users/${userId}/update-user`,
+        updatedDetails
+      );
+
+      console.log({ response });
     } catch (error) {
       console.log(error);
     }

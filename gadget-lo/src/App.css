@@ -6,6 +6,7 @@ body {
 
 * {
   margin: 0;
+  word-wrap: break-word;
 }
 
 .App {
@@ -115,6 +116,10 @@ hr {
 
 .dotted-line {
   border-top: 1px dotted #000;
+}
+
+.width-150px {
+  width: 250px;
 }
 
 /* Loader */

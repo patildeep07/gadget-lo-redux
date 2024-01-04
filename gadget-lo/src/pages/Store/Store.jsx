@@ -10,6 +10,7 @@ export const Store = () => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products.allProducts);
+  console.log({ products });
   const status = useSelector((state) => state.products.status);
 
   // console.log({ products });

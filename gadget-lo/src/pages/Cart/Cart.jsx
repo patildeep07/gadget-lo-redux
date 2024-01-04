@@ -41,7 +41,6 @@ export const Cart = () => {
                   const {
                     productName,
                     productImage,
-                    _id: productId,
                     brandName,
                     discountPrice,
                     price,

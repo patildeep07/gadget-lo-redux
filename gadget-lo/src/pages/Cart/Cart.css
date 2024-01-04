@@ -65,4 +65,5 @@
 
 .font-weight-400 {
   font-weight: 400;
+  word-wrap: break-word;
 }

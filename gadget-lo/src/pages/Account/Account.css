@@ -1,0 +1,65 @@
+.util-container,
+.information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 15px 20px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  background-color: white;
+}
+
+.util-container {
+  width: calc(30% - 10px);
+}
+
+.information-container {
+  width: calc(70% - 10px);
+}
+
+.blue {
+  color: blue;
+  cursor: pointer;
+}
+
+.input-style {
+  padding: 10px 15px;
+}
+
+.width-100px {
+  width: 100px;
+}
+
+.width-auto {
+  width: auto;
+}
+
+.margin-10px {
+  margin: 10px 0;
+}
+
+.address-container {
+  border: 1px solid lightgray;
+  padding: 10px 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  align-items: start;
+}
+
+.address-type-icon {
+  background-color: #f0f0f0;
+  padding: 1px 5px;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin: 20px 0;
+}
