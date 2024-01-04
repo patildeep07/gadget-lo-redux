@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Cart.css";
-import { placeOrder, removeFromCart } from "../../features/Users/UserSlice";
+import {
+  cartProductQuantity,
+  placeOrder,
+  removeFromCart,
+} from "../../features/Users/UserSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -44,7 +48,7 @@ export const Cart = () => {
             <div className="content-listing gap-20px">
               <div>
                 {cart.map((item) => {
-                  const { _id, product } = item;
+                  const { _id, product, quantity } = item;
                   const {
                     _id: productId,
                     productName,
@@ -62,10 +66,39 @@ export const Cart = () => {
                             src={productImage}
                             className="cart-image"
                           />
-                          <div className="flex-row justify-content-center">
-                            <p>-</p>
-                            <p>0</p>
-                            <p>+</p>
+                          <div className="flex-row justify-content-center gap-10px">
+                            <button
+                              className={`cart-quantity cursor ${
+                                quantity < 2 ? "disabled" : "enabled"
+                              }`}
+                              disabled={quantity > 0 ? true : false}
+                              onClick={() => {
+                                dispatch(
+                                  cartProductQuantity({
+                                    userId,
+                                    productId,
+                                    quantity: quantity - 1,
+                                  })
+                                );
+                              }}
+                            >
+                              -
+                            </button>
+                            <p>{quantity}</p>
+                            <button
+                              className="cart-quantity cursor"
+                              onClick={() => {
+                                dispatch(
+                                  cartProductQuantity({
+                                    userId,
+                                    productId,
+                                    quantity: quantity + 1,
+                                  })
+                                );
+                              }}
+                            >
+                              +
+                            </button>
                           </div>
                         </div>
 

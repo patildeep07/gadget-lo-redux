@@ -148,6 +148,25 @@ export const placeOrder = createAsyncThunk(
   }
 );
 
+// 9. Modify cart quantity
+export const cartProductQuantity = createAsyncThunk(
+  "users/cartProductQuantity",
+  async ({ userId, productId, quantity }) => {
+    try {
+      const response = await axios.post(
+        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/cart-product-quantity/${productId}`,
+        {
+          quantity,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 // Creating slice of users
 
 export const UserSlice = createSlice({
@@ -304,6 +323,26 @@ export const UserSlice = createSlice({
       state.status = "failed";
       state.error = action.error.message;
       toast.error(action.payload.error);
+    });
+
+    // #############
+
+    // 8. Cart Product quantity
+    // Pending case
+    builder.addCase(cartProductQuantity.pending, (state, action) => {
+      state.status = "loading";
+    });
+
+    // Fulfilled case
+    builder.addCase(cartProductQuantity.fulfilled, (state, action) => {
+      state.currentUser.cart = action.payload.user.cart;
+      toast.success(action.payload.message);
+    });
+
+    // Rejected case
+    builder.addCase(cartProductQuantity.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
     });
 
     // #############

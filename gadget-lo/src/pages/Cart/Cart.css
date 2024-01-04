@@ -37,6 +37,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  gap: 5px;
 }
 
 .cart-image {
@@ -88,4 +90,14 @@
 .address-label {
   display: flex;
   flex-direction: column;
+}
+
+.cart-quantity {
+  padding: 5px 10px;
+  background-color: #fb641b;
+  border-radius: 100%;
+  border: none;
+
+  font-size: 20px;
+  color: white;
 }
