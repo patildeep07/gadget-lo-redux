@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Account.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { updateUser } from "../../features/Users/UserSlice";
+import { logout, updateUser } from "../../features/Users/UserSlice";
 
 export const Account = () => {
   const user = useSelector((state) => state.users.currentUser);
@@ -81,6 +81,17 @@ export const Account = () => {
           exclusive deals and track your favorite products, making every visit
           uniquely yours. Happy shopping!
         </p>
+
+        <div className="dotted-line"></div>
+
+        <button
+          className="add-to-cart-button fb641b width-100px"
+          onClick={() => {
+            dispatch(logout());
+          }}
+        >
+          Logout
+        </button>
       </div>
 
       <div className="information-container">

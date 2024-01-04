@@ -153,7 +153,12 @@ export const placeOrder = createAsyncThunk(
 export const UserSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state, action) => {
+      state.currentUser = {};
+      state.isLoggedIn = false;
+    },
+  },
   extraReducers: (builder) => {
     // 1. Login reducers
     // Pending case
@@ -242,7 +247,7 @@ export const UserSlice = createSlice({
 
     // #############
 
-    // 4. Remove from cart
+    // 5. Remove from cart
     // Pending case
     builder.addCase(removeFromCart.pending, (state, action) => {
       state.status = "loading";
@@ -262,7 +267,7 @@ export const UserSlice = createSlice({
 
     // ##################
 
-    // 5. Place order
+    // 6. Place order
     // Pending case
     builder.addCase(placeOrder.pending, (state, action) => {
       state.status = "loading";
@@ -280,7 +285,30 @@ export const UserSlice = createSlice({
       state.error = action.error.message;
     });
 
+    // ##################
+
+    // 7. Update user
+    // Pending case
+    builder.addCase(updateUser.pending, (state, action) => {
+      state.status = "loading";
+    });
+
+    // Fulfilled case
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.currentUser = action.payload.user;
+      toast.success(action.payload.message);
+    });
+
+    // Rejected case
+    builder.addCase(updateUser.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+      toast.error(action.payload.error);
+    });
+
     // #############
     // End all cases
   },
 });
+
+export const { logout } = UserSlice.actions;
