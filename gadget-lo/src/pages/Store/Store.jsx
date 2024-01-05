@@ -118,7 +118,7 @@ export const Store = () => {
   // End
   return (
     <div className="store">
-      <div className="flex-row gap-15px align-start">
+      <div className="flex-row gap-15px align-start store-container">
         {/* Filters */}
         <div className="filter-column">
           <h3 className="margin-10px-0px">Filters</h3>

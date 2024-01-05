@@ -7,7 +7,7 @@ import { logout, updateUser } from "../../features/Users/UserSlice";
 export const Account = () => {
   const user = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
-  console.log({ user });
+
   const { firstName, lastName, userName, mobileNumber, password, address } =
     user;
 
@@ -116,7 +116,7 @@ export const Account = () => {
           )}
         </div>
 
-        <div className="flex-row gap-10px">
+        <div className="flex-row gap-10px mobile-flex-column">
           <input
             className="input-style"
             disabled={allowEdit ? false : true}
@@ -130,7 +130,7 @@ export const Account = () => {
           />
 
           <input
-            className="input-style"
+            className="input-style mobile-flex-column"
             disabled={allowEdit ? false : true}
             defaultValue={lastName}
             onChange={(e) =>
@@ -153,7 +153,7 @@ export const Account = () => {
 
         {/* UserName */}
 
-        <div className="flex-row gap-10px">
+        <div className="flex-row gap-10px ">
           <p>Mobile Number</p>
           {!allowEdit && (
             <span onClick={(e) => setAllowEdit(true)} className="blue">
@@ -168,7 +168,7 @@ export const Account = () => {
           )}
         </div>
 
-        <div className="flex-row gap-10px">
+        <div className="flex-row gap-10px mobile-flex-column">
           <input
             className="input-style"
             disabled={allowEdit ? false : true}
@@ -193,7 +193,7 @@ export const Account = () => {
 
         {/* Password */}
 
-        <div className="flex-row gap-10px">
+        <div className="flex-row gap-10px ">
           <p>Password</p>
           {!allowEdit && (
             <span onClick={(e) => setAllowEdit(true)} className="blue">
@@ -208,7 +208,7 @@ export const Account = () => {
           )}
         </div>
 
-        <div className="flex-row gap-10px">
+        <div className="flex-row gap-10px mobile-flex-column">
           <input
             className="input-style"
             type={allowEdit ? "text" : "password"}
@@ -276,11 +276,11 @@ export const Account = () => {
           )}
 
           {allowEdit && (
-            <div className="address-form">
-              <div className="flex-row gap-10px">
+            <div className="address-form mobile-flex-column border-1px-lightgray padding-10px ">
+              <div className="flex-row gap-10px mobile-flex-column">
                 <p>Address Type:*</p>
                 <input
-                  className="input-style"
+                  className="input-style width-100"
                   onChange={(e) =>
                     setAddressDetails({
                       ...addressDetails,
@@ -290,7 +290,7 @@ export const Account = () => {
                 />
               </div>
 
-              <div className="flex-row gap-10px">
+              <div className="flex-row gap-10px mobile-flex-column">
                 <p>Address:*</p>
                 <textarea
                   className="input-style width-100"

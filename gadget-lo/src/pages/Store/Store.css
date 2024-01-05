@@ -39,3 +39,19 @@
 .range-input {
   width: 25%;
 }
+
+@media (max-width: 480px) {
+  .store-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-column {
+    width: 90%;
+  }
+
+  .store-column {
+    width: 90%;
+  }
+}

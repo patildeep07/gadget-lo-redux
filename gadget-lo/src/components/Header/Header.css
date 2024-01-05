@@ -1,7 +1,9 @@
 .header {
   background-color: #2874f0;
   color: white;
-  height: 5vh;
+  /* height: 5vh; */
+
+  flex-wrap: wrap;
 }
 
 .header h2 {
@@ -23,4 +25,11 @@
 
 .link-style:hover::after {
   width: 100%;
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

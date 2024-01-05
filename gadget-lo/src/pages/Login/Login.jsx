@@ -101,9 +101,9 @@ export const Login = () => {
   // UI
   return (
     <div>
-      {/* Login */}(
+      {/* Login */}
       <div className="login-container">
-        <div className="flex-row">
+        <div className="flex-row mobile-login-container">
           {/* Left container */}
           <div className="image-container flex-column space-between">
             {/* Data */}

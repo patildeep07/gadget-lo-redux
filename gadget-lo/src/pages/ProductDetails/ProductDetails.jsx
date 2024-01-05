@@ -213,7 +213,7 @@ export const ProductDetails = () => {
             {/* Product container End */}
           </div>
 
-          <div className="border-1px-lightgray padding-10px flex-gap-10px width-100 ">
+          <div className="border-1px-lightgray padding-10px flex-gap-10px width-100 mobile-recommend-section">
             <p className="product-subtitle">You may also like:</p>
             <hr />
             <ProductListing products={suggestedProducts} />
