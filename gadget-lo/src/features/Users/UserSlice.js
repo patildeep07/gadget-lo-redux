@@ -17,7 +17,7 @@ const initialState = {
 export const signup = createAsyncThunk("users/signup", async (userDetails) => {
   try {
     const response = await axios.post(
-      "https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/",
+      "https://gadget-lo.onrender.com/users/",
       userDetails
     );
 
@@ -34,7 +34,7 @@ export const login = createAsyncThunk(
   async (userCredentials) => {
     try {
       const response = await axios.post(
-        "https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/login",
+        "https://gadget-lo.onrender.com/users/login",
         userCredentials
       );
 
@@ -52,7 +52,7 @@ export const addToWishlist = createAsyncThunk(
   async ({ userId, productId }) => {
     try {
       const response = await axios.post(
-        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/add-to-wishlist/${productId}`
+        `https://gadget-lo.onrender.com/users/${userId}/add-to-wishlist/${productId}`
       );
 
       return response.data;
@@ -69,7 +69,7 @@ export const addToCart = createAsyncThunk(
   async ({ userId, productId }) => {
     try {
       const response = await axios.post(
-        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/add-to-cart/${productId}`
+        `https://gadget-lo.onrender.com/users/${userId}/add-to-cart/${productId}`
       );
 
       return response.data;
@@ -86,7 +86,7 @@ export const updateUser = createAsyncThunk(
   async ({ userId, updatedDetails }) => {
     try {
       const response = await axios.post(
-        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/update-user`,
+        `https://gadget-lo.onrender.com/users/${userId}/update-user`,
         updatedDetails
       );
 
@@ -104,7 +104,7 @@ export const removeFromWishlist = createAsyncThunk(
   async ({ userId, productId }) => {
     try {
       const response = await axios.delete(
-        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/remove-from-wishlist/${productId}`
+        `https://gadget-lo.onrender.com/users/${userId}/remove-from-wishlist/${productId}`
       );
 
       return response.data;
@@ -121,7 +121,7 @@ export const removeFromCart = createAsyncThunk(
   async ({ userId, productId }) => {
     try {
       const response = await axios.delete(
-        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/remove-from-cart/${productId}`
+        `https://gadget-lo.onrender.com/users/${userId}/remove-from-cart/${productId}`
       );
 
       return response.data;
@@ -138,7 +138,7 @@ export const placeOrder = createAsyncThunk(
   async ({ userId }) => {
     try {
       const response = await axios.post(
-        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/place-order`
+        `https://gadget-lo.onrender.com/users/${userId}/place-order`
       );
 
       return response.data;
@@ -154,7 +154,7 @@ export const cartProductQuantity = createAsyncThunk(
   async ({ userId, productId, quantity }) => {
     try {
       const response = await axios.post(
-        `https://d793a5b9-7a02-4879-8f14-4f8b70998e75-00-hyuyw94d5615.global.replit.dev/users/${userId}/cart-product-quantity/${productId}`,
+        `https://gadget-lo.onrender.com/users/${userId}/cart-product-quantity/${productId}`,
         {
           quantity,
         }
