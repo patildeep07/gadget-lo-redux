@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ProductDetails } from "./pages/ProductDetails/ProductDetails";
 import { useSelector } from "react-redux";
 import { Account } from "./pages/Account/Account";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   const users = useSelector((state) => state.users);
@@ -58,6 +59,8 @@ function App() {
         pauseOnHover
         theme="light"
       />
+
+      <ScrollToTop />
     </div>
   );
 }
