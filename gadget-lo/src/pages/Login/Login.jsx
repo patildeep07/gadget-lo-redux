@@ -17,6 +17,8 @@ export const Login = () => {
   // user information
   // const users = useSelector((state) => state.users);
 
+  document.title = "Login";
+
   // Which form should be shown?
   const [searchParams, setSearchParams] = useSearchParams({ signup: false });
   const showSignup = searchParams.get("signup") === "true";

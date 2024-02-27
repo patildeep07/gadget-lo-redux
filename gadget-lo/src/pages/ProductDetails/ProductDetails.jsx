@@ -38,6 +38,9 @@ export const ProductDetails = () => {
 
   const displayProduct = products.find((product) => product._id === productId);
 
+  // Document title
+  document.title = displayProduct.productName;
+
   const defaultObj = {
     _id: "def",
     productName: "def",

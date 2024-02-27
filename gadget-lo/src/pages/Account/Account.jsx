@@ -21,6 +21,8 @@ export const Account = () => {
     address,
   });
 
+  document.title = `${firstName} ${lastName}`;
+
   // Edit setter
   const [allowEdit, setAllowEdit] = useState(false);
   const [addressDetails, setAddressDetails] = useState({

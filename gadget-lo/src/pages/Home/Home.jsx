@@ -4,6 +4,8 @@ import "./Home.css";
 export const Home = () => {
   // const userSlice = useSelector((state) => state.users); /// Will need this for categories
 
+  document.title = "Gadget Lo";
+
   return (
     <div>
       <div className="web-view landing-section">

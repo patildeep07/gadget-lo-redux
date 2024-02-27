@@ -9,6 +9,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
+  document.title = "Cart";
+
   const user = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();

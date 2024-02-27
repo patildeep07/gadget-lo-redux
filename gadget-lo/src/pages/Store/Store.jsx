@@ -7,6 +7,8 @@ import { getAllProducts } from "../../features/Products/ProductSlice";
 import { ProductListing } from "../../components/Product-listing/ProductListing";
 
 export const Store = () => {
+  document.title = "Store";
+
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products.allProducts);

@@ -3,6 +3,8 @@ import "./Wishlist.css";
 import { addToCart, removeFromWishlist } from "../../features/Users/UserSlice";
 
 export const Wishlist = () => {
+  document.title = "Wishlist";
+
   const user = useSelector((state) => state.users.currentUser);
 
   const { _id: userId, wishlist, cart } = user;
